@@ -1,7 +1,7 @@
 {
   "name": "zalastack-website",
   "framework": "nextjs",
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install"
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm install --frozen-lockfile"
 }

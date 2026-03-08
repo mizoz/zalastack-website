@@ -43,7 +43,7 @@ function parseFrontMatter(content: string) {
 
 function getBlogPosts(): BlogPost[] {
   const blogDir = join(process.cwd(), "src/app/blog");
-  const files = readdirSync(blogDir).filter(file => file.endsWith(".md"));
+  const files = readdirSync(blogDir).filter(file => file.endsWith(".md") || file.endsWith(".mdx"));
   
   const posts: BlogPost[] = [];
   
@@ -54,7 +54,7 @@ function getBlogPosts(): BlogPost[] {
     const content = readFileSync(filePath, "utf-8");
     const frontMatter = parseFrontMatter(content);
     
-    const slug = file.replace(".md", "");
+    const slug = file.replace(/\.(md|mdx)$/, "");
     const wordCount = content.split(/\s+/).length;
     const readTime = `${Math.ceil(wordCount / 200)} min read`;
     
@@ -89,12 +89,12 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Posts List */}
-        <div className="space-y-8">
+        {/* Posts Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
           {posts.map((post) => (
             <article
               key={post.slug}
-              className="card hover:border-blue-500/50 transition-colors duration-200"
+              className="card hover:border-blue-500/50 transition-colors duration-200 flex flex-col h-full"
             >
               <div className="flex items-center gap-3 mb-4 text-sm">
                 <time className="text-gray-500">
@@ -108,7 +108,7 @@ export default function BlogPage() {
                 <span className="text-gray-500">{post.readTime}</span>
               </div>
               
-              <h2 className="text-2xl font-bold text-white mb-3">
+              <h2 className="text-xl font-bold text-white mb-3 flex-grow">
                 <a
                   href={`/blog/${post.slug}`}
                   className="hover:text-blue-400 transition-colors duration-200"
@@ -117,29 +117,27 @@ export default function BlogPage() {
                 </a>
               </h2>
               
-              <p className="text-gray-400 mb-4 leading-relaxed">
+              <p className="text-gray-400 mb-4 leading-relaxed line-clamp-3">
                 {post.description}
               </p>
               
-              <div className="flex items-center justify-between">
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full border border-blue-500/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <a
-                  href={`/blog/${post.slug}`}
-                  className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200"
-                >
-                  Read more →
-                </a>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full border border-blue-500/30"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
+              
+              <a
+                href={`/blog/${post.slug}`}
+                className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200 inline-flex items-center gap-1"
+              >
+                Read more <span>→</span>
+              </a>
             </article>
           ))}
         </div>
