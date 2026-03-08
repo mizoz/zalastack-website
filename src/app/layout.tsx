@@ -24,6 +24,7 @@ export default function RootLayout({
               <div className="flex items-center space-x-8">
                 <a href="/" className="text-xl font-bold text-white">ZalaStack</a>
                 <div className="hidden md:flex items-center space-x-6">
+                  <a href="/stack" className="nav-link">Tech Stack</a>
                   <a href="/skills" className="nav-link">Marketplace</a>
                   <a href="/pricing" className="nav-link">Pricing</a>
                   <a href="/publish" className="nav-link">Publish</a>
@@ -49,6 +50,7 @@ export default function RootLayout({
               <div>
                 <h3 className="text-sm font-semibold text-white mb-4">Product</h3>
                 <ul className="space-y-3">
+                  <li><a href="/stack" className="text-gray-400 hover:text-white text-sm">Tech Stack</a></li>
                   <li><a href="/skills" className="text-gray-400 hover:text-white text-sm">Marketplace</a></li>
                   <li><a href="/pricing" className="text-gray-400 hover:text-white text-sm">Pricing</a></li>
                   <li><a href="/publish" className="text-gray-400 hover:text-white text-sm">Publish a Stack</a></li>

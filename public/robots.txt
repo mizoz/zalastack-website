@@ -1,0 +1,34 @@
+# robots.txt for ZalaStack
+# https://zalastack.com
+
+User-agent: *
+Allow: /
+Allow: /pricing
+Allow: /stack
+Allow: /skills
+Allow: /docs
+Allow: /publish
+Allow: /blog
+Allow: /privacy
+Allow: /terms
+Allow: /api/webhooks
+Allow: /api/auth
+
+Sitemap: https://zalastack.com/sitemap.xml
+
+# Disallow admin paths
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /internal
+
+# Disallow api keys
+Disallow: /.well-known
+Disallow: /api/keys
+
+# Disallow build artifacts
+Disallow: /_next
+Disallow: /node_modules
+
+# Crawl delay (optional - helps reduce load)
+Crawl-delay: 1
